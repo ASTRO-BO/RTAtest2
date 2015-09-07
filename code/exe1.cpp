@@ -69,6 +69,7 @@ int main(int argc, char *argv[])
 		PacketLib::byte* buff = packet->getData()->getStream();
 		PacketLib::dword buffSize = packet->getData()->size();
 		
+		unsigned short *waves = (unsigned short*) buff;
 		
 
 	}
