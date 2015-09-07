@@ -36,11 +36,8 @@ int main(int argc, char *argv[])
 	int npix_idx = p->getPacketSourceDataField()->getFieldIndex("Number of pixels");
 	int nsamp_idx = p->getPacketSourceDataField()->getFieldIndex("Number of samples");
 
-	
-	while(event_count++ < numevents)
-	{
+	while(event_count++ < npackets) {
 		PacketLib::ByteStreamPtr event = events.getNext();
-		event_size += event->size();
 		
 		/// swap if the stream has a different endianity
 #ifdef ARCH_BIGENDIAN
@@ -50,6 +47,13 @@ int main(int argc, char *argv[])
 		if(event->isBigendian())
 			event->swapWord();
 #endif
+
+	}
+	
+	while(event_count++ < numevents)
+	{
+		PacketLib::ByteStreamPtr event = events.getNext();
+		event_size += event->size();
 		
 		/// decoding packetlib packet
 		PacketLib::Packet *packet = ps.getPacket(event);
