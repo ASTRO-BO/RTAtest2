@@ -1,0 +1,7 @@
+export CTARTA=<prefix of installation>
+export CPLUS_INCLUDE_PATH=$CTARTA/include
+export LIBRARY_PATH=$CTARTA/lib
+
+make
+
+./exe1 ./conf/proto2.xml ./conf/proto2.raw 10
